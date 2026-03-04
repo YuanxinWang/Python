@@ -17,7 +17,7 @@ class Plant:
 
     def set_age(self, age: int) -> None:
         if age < 0:
-            print(f"Error: Invalid height {age} days [REJECTED]")
+            print(f"Error: Invalid age {age} days [REJECTED]")
         else:
             self._age = age
 
@@ -39,6 +39,9 @@ class Flower(Plant):
     def bloom(self) -> None:
         print(f"{self._name} is blooming beautifully!")
 
+    def get_color(self) -> str:
+        return self._color
+
     def get_info(self) -> str:
         return (
             f"{self._name} (Flower): {self._height}cm, "
@@ -50,13 +53,23 @@ class Tree(Plant):
     def __init__(self, name: str, height: int,
                  age: int, trunk_diameter: int) -> None:
         super().__init__(name, height, age)
-        self._trunk_diameter = trunk_diameter
+        self._trunk_diameter = 0
+        self.set_trunk_diameter(trunk_diameter)
 
     def produce_shade(self) -> None:
         print(
             f"{self._name} provides "
             f"{self._trunk_diameter * 2} square meters of shade"
         )
+
+    def set_trunk_diameter(self, trunk_diameter: int) -> None:
+        if trunk_diameter < 0:
+            print(f"Error: Invalid diameter {trunk_diameter}cm [REJECTED]")
+        else:
+            self._trunk_diameter = trunk_diameter
+
+    def get_trunk_diameter(self) -> int:
+        return self._trunk_diameter
 
     def get_info(self) -> str:
         return (
